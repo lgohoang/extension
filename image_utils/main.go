@@ -77,7 +77,17 @@ func (i *GIF) AddText(text []Text) (*bytes.Buffer, error) {
 		return nil, err
 	}
 
-	// result := *i.GIF
+	result := &GIF{
+		&gif.GIF{
+			Delay:           i.Delay,
+			LoopCount:       i.LoopCount,
+			Disposal:        i.Disposal,
+			Config:          i.Config,
+			BackgroundIndex: i.BackgroundIndex,
+		},
+	}
+
+	result.Image = append(result.Image, i.Image...)
 
 	for j, img := range imgs {
 		dc := gg.NewContextForRGBA(&img)
@@ -101,12 +111,12 @@ func (i *GIF) AddText(text []Text) (*bytes.Buffer, error) {
 		quantizer.Quantize(palettedImage, dc.Image().Bounds(), dc.Image(), image.Point{})
 		draw.Draw(palettedImage, palettedImage.Rect, dc.Image(), dc.Image().Bounds().Min, draw.Src)
 
-		i.Image[j] = palettedImage
+		result.Image[j] = palettedImage
 	}
 
 	buf := new(bytes.Buffer)
 
-	if err := gif.EncodeAll(buf, i.GIF); err != nil {
+	if err := gif.EncodeAll(buf, result.GIF); err != nil {
 		return nil, err
 	}
 
