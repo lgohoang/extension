@@ -6,6 +6,7 @@ import (
 	"image"
 	"image/draw"
 	"image/gif"
+	"io"
 	"os"
 
 	"github.com/andybons/gogif"
@@ -38,6 +39,29 @@ func GIFFromFile(filename string) (*GIF, error) {
 	}
 
 	imageGif, err := gif.DecodeAll(file)
+	if err != nil {
+		return nil, err
+	}
+
+	return &GIF{
+		imageGif,
+	}, nil
+}
+
+func GIFFromReader(r io.Reader) (*GIF, error) {
+	imageGif, err := gif.DecodeAll(r)
+	if err != nil {
+		return nil, err
+	}
+
+	return &GIF{
+		imageGif,
+	}, nil
+}
+
+func GIFFromBytes(b []byte) (*GIF, error) {
+
+	imageGif, err := gif.DecodeAll(bytes.NewReader(b))
 	if err != nil {
 		return nil, err
 	}
