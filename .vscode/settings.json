@@ -1,0 +1,26 @@
+{
+    "go.buildOnSave": "package",
+    "go.lintOnSave": "package",
+    "go.vetOnSave": "package",
+    "go.formatTool": "goimports",
+    "go.docsTool": "gogetdoc",
+    "go.useLanguageServer": true,
+    "go.useCodeSnippetsOnFunctionSuggest": true,
+    "go.coverOnSave": false,
+    "go.autocompleteUnimportedPackages": true,
+    "[go]":{
+        "editor.insertSpaces": false,
+        "editor.formatOnSave": true,
+        "editor.formatOnPaste": true,
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": true
+        }
+    },
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true
+    }
+}

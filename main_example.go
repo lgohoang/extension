@@ -1,9 +1,13 @@
-# extension
-## GIF
-### Add text
+package main
 
-```
-    gif, err := image.GIFFromFile("image.gif")
+import (
+	"extension/image"
+	"os"
+)
+
+// for tester
+func main() {
+	gif, err := image.GIFFromFile("/Volumes/Storage/Workspace/Tools/QrCodeInvite/bg2.gif")
 	if err != nil {
 		panic(err)
 	}
@@ -11,7 +15,7 @@
 	img, err := gif.AddText([]image.Text{
 		{
 			Text:           "https://example.vn",
-			FontFamilyPath: "Lato-Regular.ttf",
+			FontFamilyPath: "/Volumes/Storage/Workspace/Tools/QrCodeInvite/fonts/Lato-Regular.ttf",
 			FontSize:       20,
 			FontColor:      "#de32ab",
 			Point: image.Point{
@@ -20,8 +24,8 @@
 			},
 		},
 		{
-			Text:           "First, Last Name",
-			FontFamilyPath: "Lato-Regular.ttf",
+			Text:           "Nguyễn Văn Hoàng",
+			FontFamilyPath: "/Volumes/Storage/Workspace/Tools/QrCodeInvite/fonts/Lato-Regular.ttf",
 			FontSize:       40,
 			FontColor:      "#fcba03",
 			Point: image.Point{
@@ -44,4 +48,4 @@
 	if err != nil {
 		panic(err)
 	}
-```
+}
