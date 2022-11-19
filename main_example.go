@@ -1,24 +1,24 @@
 package main
 
 import (
-	"extension/image"
+	"extension/image_utils"
 	"os"
 )
 
 // for tester
 func main() {
-	gif, err := image.GIFFromFile("/Volumes/Storage/Workspace/Tools/QrCodeInvite/bg2.gif")
+	gif, err := image_utils.GIFFromFile("/Volumes/Storage/Workspace/Tools/QrCodeInvite/bg2.gif")
 	if err != nil {
 		panic(err)
 	}
 
-	img, err := gif.AddText([]image.Text{
+	img, err := gif.AddText([]image_utils.Text{
 		{
 			Text:           "https://example.vn",
 			FontFamilyPath: "/Volumes/Storage/Workspace/Tools/QrCodeInvite/fonts/Lato-Regular.ttf",
 			FontSize:       20,
 			FontColor:      "#de32ab",
-			Point: image.Point{
+			Point: image_utils.Point{
 				X: 0,
 				Y: 0,
 			},
@@ -28,7 +28,7 @@ func main() {
 			FontFamilyPath: "/Volumes/Storage/Workspace/Tools/QrCodeInvite/fonts/Lato-Regular.ttf",
 			FontSize:       40,
 			FontColor:      "#fcba03",
-			Point: image.Point{
+			Point: image_utils.Point{
 				X: 0,
 				Y: 100,
 			},

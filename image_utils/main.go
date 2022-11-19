@@ -1,4 +1,4 @@
-package image
+package image_utils
 
 import (
 	"bytes"
@@ -132,4 +132,23 @@ func (i *GIF) GetGifDimensions() (x, y int) {
 	}
 
 	return highestX - lowestX, highestY - lowestY
+}
+
+func MergeImage(bg image.Image, qr image.Image, p image.Point) *image.RGBA {
+
+	// starting position of the second image (bottom left)
+	// sp2 := image.Point{qr.Bounds().Dx(), 0}
+
+	// new rectangle for the second image
+	r2 := image.Rectangle{p, bg.Bounds().Size()}
+
+	// rectangle for the big image
+	r := image.Rectangle{image.Point{0, 0}, r2.Max}
+
+	new := image.NewRGBA(r)
+
+	draw.Draw(new, bg.Bounds(), bg, image.Point{0, 0}, draw.Src)
+	draw.Draw(new, r2, qr, image.Point{0, 0}, draw.Over)
+
+	return new
 }
